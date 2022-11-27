@@ -29,4 +29,5 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm playwright test 
-    - run: 
+    - run: npx allure generate my-allure-results -o allure-report --clean
+    - run : npx allure open allure-report
