@@ -19,5 +19,5 @@ When you run test Allur Report generate automaticly.
 
 
 Project results are uploaded to a folder 'allure-report-screenshots' in the form of screenshots.  
-After each launch of the test, a screenshot with the final page of the test is loaded into the folder 'test-results'
+After each launch of the test, a screenshots with the final page of the test is loaded into the folder 'test-results'
 
