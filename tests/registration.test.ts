@@ -1,16 +1,14 @@
 import { expect, test } from '@playwright/test';
-import { generateUsername } from "unique-username-generator";
 import { RegistrationPage } from '../pages/registratration.page';
-import { MainPage } from '../pages/main.page';
 import  * as globalConst from '../const'
 
 
 test ('Check the registration of a new user with valid data', async ({ page }) => {
-    const homepage = new MainPage(page);
+    
     const registpage = new RegistrationPage(page)
     
-    await homepage.goto();
-    await homepage.registrationBtn.click()
+    await registpage.goto();
+    await registpage.registrationBtn.click()
     await registpage.inputUsername.fill(globalConst.genUsername);
     await registpage.inputPassword.fill(globalConst.password);
     await registpage.inputPasswordConfirmation.fill(globalConst.password);
@@ -26,11 +24,11 @@ test ('Check the registration of a new user with valid data', async ({ page }) =
 })
 
 test('Checking that it is not possible to register a new user without entering an email', async ({ page }) => {
-    const homepage = new MainPage(page);
+
     const registpage = new RegistrationPage (page);
     
-    await homepage.goto();
-    await homepage.registrationBtn.click();
+    await registpage.goto();
+    await registpage.registrationBtn.click();
     await registpage.inputUsername.fill(globalConst.genUsername);
     await registpage.inputPassword.fill(globalConst.password);
     await registpage.inputPasswordConfirmation.fill(globalConst.password);

@@ -1,6 +1,7 @@
 import {  Locator, Page } from '@playwright/test';
+import { MainPage } from './main.page';
 
-export class LoginPage  {
+export class LoginPage extends MainPage {
     readonly page: Page;
     readonly inputUsername: Locator
     readonly inputPassword: Locator
@@ -9,7 +10,7 @@ export class LoginPage  {
     readonly lostPassword: Locator
 
 constructor(page: Page) {
-
+    super(page);
     this.page = page;
     this.inputUsername = page.locator('#username');
     this.inputPassword = page.locator('#password');
