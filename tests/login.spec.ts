@@ -1,9 +1,15 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../pages/login.page'
+import { LoginPage } from '../pages/login.page';
+import { MainPage } from '../pages/main.page'
 
-test ('Login', async ({ page }) => {
-    const homepage = new LoginPage(page);
-    await homepage.gotoLogin();
-    await homepage.fillData()
-    await expect(homepage.content).toContainText('Вошли как')
+test ('Check the sign in of an existing user', async ({ page }) => {
+    const homepage = new MainPage(page);
+    const logpage = new LoginPage(page);
+
+    await homepage.goto();
+    await homepage.loginBtn.click()
+    await logpage.inputUsername.fill('Paimon');
+    await logpage.inputPassword.fill('123456');
+    await logpage.submitBtn.click()
+    await expect(logpage.content).toContainText('Вошли как')
 })
