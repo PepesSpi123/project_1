@@ -2,6 +2,7 @@ import { expect, test } from '@playwright/test';
 import { PasswordRecoveryPage } from '../pages/passwordRecovery.page';
 import { LoginPage } from '../pages/login.page';
 import { MainPage } from '../pages/main.page';
+import  * as globalConst from '../const'
 
 test ('Check the ability to recover password', async ({ page }) => {
     const homepage = new MainPage(page);
@@ -14,6 +15,7 @@ test ('Check the ability to recover password', async ({ page }) => {
     expect(loginpage.inputUsername).toBeVisible
 
     await loginpage.lostPassword.click()
-    await lostpasspage.recoverPassword()
+    await lostpasspage.inputEmail.fill(globalConst.email)
+    await lostpasspage.submitBtn.click()
     await expect(lostpasspage.message).toContainText("An email with instructions to choose a new password has been sent to you")
 })

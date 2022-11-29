@@ -13,9 +13,5 @@ export class PasswordRecoveryPage {
         this.submitBtn = page.locator('[type="submit"]')
         this.message = page.locator('#flash_notice')
     }
-async recoverPassword(){
-    await this.inputEmail.fill('irena.tv133@gmail.com')
-    await this.submitBtn.click()
 
-}
 }
