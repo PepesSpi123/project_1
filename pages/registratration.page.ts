@@ -1,5 +1,6 @@
 import { Page, Locator } from '@playwright/test';
 import { MainPage } from './main.page';
+import  * as globalConst from '../const'
 
 export class RegistrationPage extends MainPage {
 
@@ -31,6 +32,22 @@ constructor(page: Page) {
     this.flashNotice = page.locator('#flash_notice')
     this.errorMessage = page.locator('#errorExplanation')
 }
+async fillUsername(){
+    await this.inputUsername.type(globalConst.genUsername);
 }
-
-
+async fillPassword(){
+    await this.inputPassword.fill(globalConst.password);
+}
+async fillPasswordConfirmation(){
+    await this.inputPasswordConfirmation.fill(globalConst.password);
+}
+async fillFirstName(){
+    await this.inputFirstName.fill(globalConst.firstName);
+}
+async fillLasttName(){
+    await this.inputLastName.fill(globalConst.lastName);
+}
+async fillEmail(){
+    await this.inputEmail.fill(globalConst.genEmail);
+}
+}

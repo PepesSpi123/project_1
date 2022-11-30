@@ -1,5 +1,6 @@
 import {  Locator, Page } from '@playwright/test';
 import { LoginPage } from './login.page';
+import  * as globalConst from '../const'
 
 export class PasswordRecoveryPage extends LoginPage{
 
@@ -15,5 +16,7 @@ export class PasswordRecoveryPage extends LoginPage{
         this.submitBtn = page.locator('[type="submit"]')
         this.message = page.locator('#flash_notice')
     }
-
+async fillEmail(){
+    await this.inputEmail.fill(globalConst.email)
+}
 }

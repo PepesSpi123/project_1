@@ -2,17 +2,19 @@ import { expect, test } from '@playwright/test';
 import { PasswordRecoveryPage } from '../pages/passwordRecovery.page';
 import  * as globalConst from '../const'
 
-test ('Check the ability to recover password', async ({ page }) => {
+test('A5 - Check the ability to recover password', async ({ page }) => {
 
-    const lostpasspage = new PasswordRecoveryPage (page)
+    const passRecoveryPage = new PasswordRecoveryPage (page)
     
-    await lostpasspage.goto();
-    await lostpasspage.loginBtn.click()
+    await passRecoveryPage.goToPassRecoveryPage();
+    
+    await expect(passRecoveryPage.page).toHaveURL(/.*lost_password/);
 
-    expect(lostpasspage.inputUsername).toBeVisible
+    await passRecoveryPage.fillEmail();
 
-    await lostpasspage.lostPassword.click()
-    await lostpasspage.inputEmail.fill(globalConst.email)
-    await lostpasspage.submitBtn.click()
-    await expect(lostpasspage.message).toContainText("An email with instructions to choose a new password has been sent to you")
+    await expect(passRecoveryPage.inputEmail).toHaveValue(globalConst.email)
+
+    await passRecoveryPage.submitBtn.click()
+
+    await expect(passRecoveryPage.message).toContainText("An email with instructions to choose a new password has been sent to you")
 })

@@ -1,5 +1,6 @@
 import {  Locator, Page } from '@playwright/test';
 import { MainPage } from './main.page';
+import  * as globalConst from '../const'
 
 export class LoginPage extends MainPage {
     readonly page: Page;
@@ -17,5 +18,13 @@ constructor(page: Page) {
     this.submitBtn = page.locator('[type="submit"]')
     this.content = page.locator('#loggedas')
     this.lostPassword = page.locator('[href="/account/lost_password"]')
+}
+async goToPassRecoveryPage(){
+    await this.goToLoginPage();
+    await this.lostPassword.click()
+}
+async fillUserData(){
+    await this.inputUsername.fill(globalConst.username);
+    await this.inputPassword.fill(globalConst.password)
 }
 }

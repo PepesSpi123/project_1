@@ -1,4 +1,5 @@
 import { Locator, Page } from '@playwright/test';
+import * as globalConst from '../const'
 
 export class MainPage {
    
@@ -15,8 +16,21 @@ constructor(page: Page) {
     this.searchField = page.locator('#q')
 }
 
-    async goto(){
+    async goToMain(){
         await this.page.goto(this.url);
+    }
+    async goToLoginPage() {
+        await this.goToMain();
+        await this.loginBtn.click()
+    }
+    async goToRegistrationPage() {
+        await this.goToMain();
+        await this.registrationBtn.click()
+    }
+    async goToSearchPage() {
+        await this.goToMain();
+        await this.searchField.fill(globalConst.search)
+        await this.searchField.press('Enter')
     }
 }
 
