@@ -18,6 +18,5 @@ When you run test Allur Report generate automaticly.
 2. Open Allure Report: npm allure:open
 
 
-Project results are uploaded to a folder 'allure-report-screenshots' in the form of screenshots.  
-After each launch of the test, a screenshots with the final page of the test is loaded into the folder 'test-results'
+Project results are uploaded to a folder 'allure-results'. 
 
