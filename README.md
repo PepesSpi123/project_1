@@ -23,6 +23,7 @@ To run this project, install it locally:
 $ cd ../field
 $ git clone https://github.com/PepesSpi123/project_1
 $ npm init playwright@latest
+$ npm install unique-username-generator --save
 $ npm test
 ```
 
