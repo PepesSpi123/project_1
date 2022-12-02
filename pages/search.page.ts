@@ -1,4 +1,4 @@
-import {  Locator, Page } from '@playwright/test';
+import {  Locator, Page, expect } from '@playwright/test';
 import { MainPage } from './main.page';
 
 export class SearchPage extends MainPage {
@@ -18,9 +18,20 @@ export class SearchPage extends MainPage {
         this.commitBtn = page.locator('[name="commit"]') 
         this.searchResults = page.locator('#search-results-counts')
     }
-    
-    async usingFilters(){
-        await this.issuesCheckbox.click();
-        await this.messagesCheckbox.click()
+    async checkingCentralField(text) {
+        expect(this.centralSearchField).toHaveValue(text)
     }
+
+    async selectIssuesCheckbox(){
+        await this.issuesCheckbox.click();
+        expect(this.issuesCheckbox).toBeChecked();
+    }
+    async selectMessagesCheckbox(){
+        await this.messagesCheckbox.click();
+        expect(this.messagesCheckbox).toBeChecked();
+    }
+    async submitSearch() {
+        await this.commitBtn.click()
+    }
+
 }

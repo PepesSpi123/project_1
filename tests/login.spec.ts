@@ -1,18 +1,14 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/login.page';
-import  * as globalConst from '../const'
+import  * as testData from '../src/utils/const'
 
 test ('A3 - Check the sign in of an existing user', async ({ page }) => {
     const logPage = new LoginPage(page);
-
+    await logPage.goToMain();
     await logPage.goToLoginPage();
-    await expect(logPage.page).toHaveURL(/.*login/);
  
-    await logPage.fillUserData();
+    await logPage.fillUserData(testData.username, testData.password);
 
-    await expect(logPage.inputUsername).toHaveValue(globalConst.username)
-    await expect(logPage.inputPassword).toHaveValue(globalConst.password)
-
-    await logPage.submitBtn.click()
+    await logPage.submitLogin()
     await expect(logPage.content).toContainText('Вошли как')
 })

@@ -1,6 +1,5 @@
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 import { MainPage } from './main.page';
-import  * as globalConst from '../const'
 
 export class RegistrationPage extends MainPage {
 
@@ -32,22 +31,37 @@ constructor(page: Page) {
     this.flashNotice = page.locator('#flash_notice')
     this.errorMessage = page.locator('#errorExplanation')
 }
-async fillUsername(){
-    await this.inputUsername.type(globalConst.genUsername);
+async fillUsername(username){
+    await this.inputUsername.type(username);
+  
 }
-async fillPassword(){
-    await this.inputPassword.fill(globalConst.password);
+async fillPassword(password){
+    await this.inputPassword.fill(password);
+    await expect(this.inputPassword).toHaveValue(password)
 }
-async fillPasswordConfirmation(){
-    await this.inputPasswordConfirmation.fill(globalConst.password);
+async fillPasswordConfirmation(password){
+    await this.inputPasswordConfirmation.fill(password);
+    await expect(this.inputPasswordConfirmation).toHaveValue(password)
 }
-async fillFirstName(){
-    await this.inputFirstName.fill(globalConst.firstName);
+async fillFirstName(firstName){
+    await this.inputFirstName.fill(firstName);
+    await expect(this.inputFirstName).toHaveValue(firstName)
 }
-async fillLasttName(){
-    await this.inputLastName.fill(globalConst.lastName);
+async fillLasttName(lastName){
+    await this.inputLastName.fill(lastName);
+    await expect(this.inputLastName).toHaveValue(lastName)
 }
-async fillEmail(){
-    await this.inputEmail.fill(globalConst.genEmail);
+async fillEmail(email){
+    await this.inputEmail.fill(email);
+    await expect(this.inputEmail).toHaveValue(email)
+}
+async changeLanguage(){
+    await this.chooseLanguage.click()
+    await this.chooseLanguage.selectOption('uk')
+    await expect (this.chooseLanguage).toHaveValue('uk')
+}
+async submitRegistration(){
+    await this.submitBtn.click()
+    
 }
 }

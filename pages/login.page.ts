@@ -1,6 +1,5 @@
-import {  Locator, Page } from '@playwright/test';
+import {  Locator, Page, expect } from '@playwright/test';
 import { MainPage } from './main.page';
-import  * as globalConst from '../const'
 
 export class LoginPage extends MainPage {
     readonly page: Page;
@@ -20,11 +19,16 @@ constructor(page: Page) {
     this.lostPassword = page.locator('[href="/account/lost_password"]')
 }
 async goToPassRecoveryPage(){
-    await this.goToLoginPage();
     await this.lostPassword.click()
+    await expect(this.page).toHaveURL(/.*lost_password/);
 }
-async fillUserData(){
-    await this.inputUsername.fill(globalConst.username);
-    await this.inputPassword.fill(globalConst.password)
+async fillUserData(username, password){
+    await this.inputUsername.fill(username);
+    await this.inputPassword.fill(password)
+    await expect(this.inputUsername).toHaveValue(username)
+    await expect(this.inputPassword).toHaveValue(password)
+}
+async submitLogin() {
+    await this.submitBtn.click()
 }
 }

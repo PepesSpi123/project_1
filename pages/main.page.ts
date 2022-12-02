@@ -1,5 +1,4 @@
-import { Locator, Page } from '@playwright/test';
-import * as globalConst from '../const'
+import { Locator, Page, expect } from '@playwright/test';
 
 export class MainPage {
    
@@ -20,17 +19,19 @@ constructor(page: Page) {
         await this.page.goto(this.url);
     }
     async goToLoginPage() {
-        await this.goToMain();
         await this.loginBtn.click()
+        await expect(this.page).toHaveURL(/.*login/);
     }
     async goToRegistrationPage() {
-        await this.goToMain();
         await this.registrationBtn.click()
+        await expect(this.page).toHaveURL(/.*register/);
     }
-    async goToSearchPage() {
-        await this.goToMain();
-        await this.searchField.fill(globalConst.search)
-        await this.searchField.press('Enter')
+    async executeSearch(text) {
+        await this.searchField.fill(text);
+        await this.searchField.press('Enter');
+        await expect(this.page).toHaveURL(/.*search/);
+       
+
     }
 }
 
