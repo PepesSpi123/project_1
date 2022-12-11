@@ -17,7 +17,7 @@ In this projects:
 ## Setup 
 To run this project, install it locally:
 ```
-$ git clone https://github.com/PepesSpi123/project_1
+$ git clone https://github.com/PepesSpi123/PlaywrightRedmineProject
 $ npm install
 ```
 
