@@ -23,7 +23,6 @@ $ npm install
 
 ## Running Test: 
 ```
-- Running all tests: npm test
 - Running all tests: npx playwright test
 - Running a single test file: npx playwright test login.spec.ts
 - Running tests in headed mode: npx playwright test login.spec.ts --headed
